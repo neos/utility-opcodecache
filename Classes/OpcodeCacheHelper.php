@@ -51,18 +51,6 @@ abstract class OpcodeCacheHelper
             };
         }
 
-        // WinCache - http://www.php.net/manual/de/book.wincache.php
-        if (extension_loaded('wincache') && ini_get('wincache.ocenabled') === '1') {
-            self::$clearCacheCallbacks[] = function ($absolutePathAndFilename) {
-                if ($absolutePathAndFilename !== null) {
-                    wincache_refresh_if_changed([$absolutePathAndFilename]);
-                } else {
-                    // Refresh everything!
-                    wincache_refresh_if_changed();
-                }
-            };
-        }
-
         // XCache - http://xcache.lighttpd.net/
         // Supported in version >= 3.0.1
         if (extension_loaded('xcache')) {
