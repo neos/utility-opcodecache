@@ -40,7 +40,7 @@ abstract class OpcodeCacheHelper
     {
         self::$clearCacheCallbacks = [];
 
-        // Zend OpCache (built in by default since PHP 5.5) - http://php.net/manual/de/book.opcache.php
+        // OpCache - http://php.net/manual/en/book.opcache.php
         if (extension_loaded('Zend OPcache') && ini_get('opcache.enable') === '1') {
             self::$clearCacheCallbacks[] = function ($absolutePathAndFilename) {
                 if ($absolutePathAndFilename !== null && function_exists('opcache_invalidate')) {
