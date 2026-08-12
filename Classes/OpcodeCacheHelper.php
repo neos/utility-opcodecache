@@ -51,17 +51,6 @@ abstract class OpcodeCacheHelper
             };
         }
 
-        // XCache - http://xcache.lighttpd.net/
-        // Supported in version >= 3.0.1
-        if (extension_loaded('xcache')) {
-            self::$clearCacheCallbacks[] = function ($absolutePathAndFilename) {
-                // XCache can only be fully cleared.
-                if (!ini_get('xcache.admin.enable_auth')) {
-                    /** @phpstan-ignore-next-line */
-                    xcache_clear_cache(XC_TYPE_PHP);
-                }
-            };
-        }
         self::$initialized = true;
     }
 
